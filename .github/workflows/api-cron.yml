@@ -1,0 +1,27 @@
+name: Ejecución Programada API
+
+on:
+  schedule:
+    # 06:30 UTC es 07:30 España (Invierno)
+    # 15:00 UTC es 16:00 España (Invierno)
+    # 1-5 significa de Lunes a Viernes
+    - cron: '30 6 * * 1-5'
+    - cron: '0 15 * * 1-5'
+  workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub para probar
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar script
+        run: node index.js
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
