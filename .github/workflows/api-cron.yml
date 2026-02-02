@@ -2,11 +2,17 @@ name: Ejecución Programada API
 
 on:
   schedule:
-    # 06:30 UTC es 07:30 España (Invierno)
-    # 15:00 UTC es 16:00 España (Invierno)
-    # 1-5 significa de Lunes a Viernes
-    - cron: '30 6 * * 1-5'
-    - cron: '0 15 * * 1-5'
+    # --- INICIO (Lunes a Viernes) ---
+    # 07:00 UTC es 08:00 España
+    - cron: '0 7 * * 1-5'
+
+    # --- CIERRE LUNES A JUEVES (8.5 horas después) ---
+    # 08:00 + 8.5h = 16:30 España -> 15:30 UTC
+    - cron: '30 15 * * 1-4'
+
+    # --- CIERRE VIERNES (6 horas después) ---
+    # 08:00 + 6h = 14:00 España -> 13:00 UTC
+    - cron: '0 13 * * 5'
   workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub para probar
 
 jobs:
