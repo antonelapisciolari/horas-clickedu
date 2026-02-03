@@ -4,7 +4,7 @@ on:
   schedule:
     # --- INICIO (Lunes a Viernes) ---
     # 07:00 UTC es 08:00 España
-    - cron: '0 7 * * 1-5'
+    - cron: '0 6 * * 1-5'
 
     # --- CIERRE LUNES A JUEVES (8.5 horas después) ---
     # 08:00 + 8.5h = 16:30 España -> 15:30 UTC
